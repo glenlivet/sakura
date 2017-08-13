@@ -1,13 +1,17 @@
 package org.glenlivet.sakura.katharsis.domain.model;
 
 import io.katharsis.resource.annotations.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonApiResource(type="products")
 public class Product {
 
     @JsonApiId
+    @Id
     private Long id;
 
     private String name;
@@ -19,10 +23,11 @@ public class Product {
     private String description;
 
     @JsonApiToOne
+    @Transient
     private ProductSku defaultSku;
 
     @JsonApiToMany(opposite = "product")
-    private List<ProductSku> skus;
+    private List<ProductSku> skus = new ArrayList<>();
 
     public Product() {
     }

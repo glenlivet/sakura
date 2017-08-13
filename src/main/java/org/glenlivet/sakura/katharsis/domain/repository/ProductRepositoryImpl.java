@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class ProductRepositoryImpl extends ResourceRepositoryBase<Product, Long> {
@@ -43,7 +42,7 @@ public class ProductRepositoryImpl extends ResourceRepositoryBase<Product, Long>
             //save
             long id = productIdGenerator.getAndIncrement();
             resource.setId(id);
-            productRepository.save(productJsonToMongoConverter.convert(resource));
+            productRepository.save(resource);
             return resource;
         } else {
             return super.save(resource);
@@ -53,9 +52,9 @@ public class ProductRepositoryImpl extends ResourceRepositoryBase<Product, Long>
     @Override
     public Product findOne(Long id, QuerySpec querySpec) {
 
-        org.glenlivet.sakura.mongo.domain.Product product = productRepository.findOne(id);
+        Product product = productRepository.findOne(id);
         ResourceList<Product> resourceList = querySpec.apply(
-                Arrays.asList(productMongoToJsonConverter.convert(product)));
+                Arrays.asList(product));
         if (resourceList.isEmpty()) {
             throw new ResourceNotFoundException("resource not found");
         } else {
@@ -65,11 +64,7 @@ public class ProductRepositoryImpl extends ResourceRepositoryBase<Product, Long>
 
     @Override
     public ResourceList<Product> findAll(QuerySpec querySpec) {
-        List<org.glenlivet.sakura.mongo.domain.Product> productList = productRepository.findAll();
-        List<Product> productJsonList = productList
-                .stream()
-                .map(productMongoToJsonConverter::convert)
-                .collect(Collectors.toList());
-        return querySpec.apply(productJsonList);
+        List<Product> productList = productRepository.findAll();
+        return querySpec.apply(productList);
     }
 }
