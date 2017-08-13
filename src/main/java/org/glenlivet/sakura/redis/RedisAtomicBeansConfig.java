@@ -12,4 +12,9 @@ public class RedisAtomicBeansConfig {
     public RedisAtomicLong productIdGenerator(RedisConnectionFactory connectionFactory) {
          return new RedisAtomicLong("sakura:id-generators:product", connectionFactory);
     }
+
+    @Bean(name="skuIdGenerator")
+    public RedisAtomicLong productSkuIdGenerator(RedisConnectionFactory connectionFactory) {
+        return new RedisAtomicLong("sakura:id-generators:sku", connectionFactory);
+    }
 }
