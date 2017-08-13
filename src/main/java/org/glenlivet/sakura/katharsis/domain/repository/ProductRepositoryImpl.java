@@ -4,8 +4,6 @@ import io.katharsis.queryspec.QuerySpec;
 import io.katharsis.repository.ResourceRepositoryBase;
 import io.katharsis.resource.exception.ResourceNotFoundException;
 import io.katharsis.resource.list.ResourceList;
-import org.glenlivet.sakura.converter.ProductJsonToMongoConverter;
-import org.glenlivet.sakura.converter.ProductMongoToJsonConverter;
 import org.glenlivet.sakura.katharsis.domain.model.Product;
 import org.glenlivet.sakura.mongo.repository.ProductMongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +23,6 @@ public class ProductRepositoryImpl extends ResourceRepositoryBase<Product, Long>
     @Autowired
     @Qualifier("productIdGenerator")
     private RedisAtomicLong productIdGenerator;
-
-    @Autowired
-    private ProductJsonToMongoConverter productJsonToMongoConverter;
-
-    @Autowired
-    private ProductMongoToJsonConverter productMongoToJsonConverter;
 
     public ProductRepositoryImpl() {
         super(Product.class);
