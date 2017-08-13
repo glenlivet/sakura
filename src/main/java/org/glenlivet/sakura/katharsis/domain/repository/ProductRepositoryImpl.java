@@ -37,7 +37,7 @@ public class ProductRepositoryImpl extends ResourceRepositoryBase<Product, Long>
             productRepository.save(resource);
             return resource;
         } else {
-            return super.save(resource);
+            return productRepository.save(resource);
         }
     }
 
