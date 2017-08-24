@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonApiResource(type="products")
-public class Product {
+public class Product implements KatharsisModel {
 
     @JsonApiId
     @Id

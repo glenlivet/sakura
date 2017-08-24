@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Transient;
 import java.util.Map;
 
 @JsonApiResource(type = "product-skus")
-public class ProductSku {
+public class ProductSku implements KatharsisModel {
 
     @JsonApiId
     @Id
