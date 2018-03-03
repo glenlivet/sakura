@@ -1,0 +1,10 @@
+spring:
+    activemq:
+        broker-url: tcp://localhost:61616
+        user: admin
+        password: admin
+
+katharsis:
+    resourcePackage: org.glenlivet.sakura.katharsis.domain
+    domainName: http://localhost:8080
+    pathPrefix: /api

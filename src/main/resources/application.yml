@@ -1,4 +1,0 @@
-katharsis:
-    resourcePackage: org.glenlivet.sakura.katharsis.domain
-    domainName: http://localhost:8080
-    pathPrefix: /api
